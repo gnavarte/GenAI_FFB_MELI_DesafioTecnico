@@ -4,6 +4,7 @@ from typing import List
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
+import certifi
 
 load_dotenv()
 app = FastAPI()
@@ -12,8 +13,8 @@ MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
     raise ValueError("La variable de entorno MONGO_URI no está configurada")
 
-# Configuración de conexión a MongoDB
-client = MongoClient(MONGO_URI)
+# Configuración de conexión a MongoDB con certifi
+client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
 db = client["dna_database"]
 dna_collection = db["dna_sequences"]
 
