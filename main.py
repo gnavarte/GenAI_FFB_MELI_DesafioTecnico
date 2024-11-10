@@ -59,6 +59,10 @@ def is_mutant(dna):
 
     return False
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 @app.post("/mutant/")
 def check_mutant(dna_request: DNARequest):
     dna_sequence = dna_request.dna
