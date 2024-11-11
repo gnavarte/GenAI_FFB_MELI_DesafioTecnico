@@ -2,6 +2,9 @@
 
 API desarrollada con FastAPI para detectar mutantes basándose en secuencias de ADN. La API recibe secuencias de ADN en formato de listas de cadenas de caracteres y determina si pertenecen a un mutante o no, almacenando los resultados en una base de datos MongoDB.
 
+El servicio se encuentra corriendo en Render y puede ser accedido en la siguiente URL:
+[https://genai-ffb-meli-desafiotecnico.onrender.com](https://genai-ffb-meli-desafiotecnico.onrender.com)
+
 ## Funcionalidades
 
 - **Health Check (`/health`)**: Verifica si la API está activa.
