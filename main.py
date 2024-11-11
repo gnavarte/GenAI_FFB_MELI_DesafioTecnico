@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import certifi
 
 load_dotenv()
+
 app = FastAPI()
 
 MONGO_URI = os.getenv("MONGO_URI")
@@ -74,14 +75,14 @@ def check_mutant(dna_request: DNARequest):
             return {"message": "Mutant detected"}
         else:
             raise HTTPException(status_code=403, detail="Forbidden: Not a mutant")
-
-    is_mutant_result = is_mutant(dna_sequence)
-    dna_collection.insert_one({"dna": dna_str, "is_mutant": is_mutant_result})
-
-    if is_mutant_result:
-        return {"message": "Mutant detected"}
     else:
-        raise HTTPException(status_code=403, detail="Forbidden: Not a mutant")
+        is_mutant_result = is_mutant(dna_sequence)
+        dna_collection.insert_one({"dna": dna_str, "is_mutant": is_mutant_result})
+
+        if is_mutant_result:
+            return {"message": "Mutant detected"}
+        else:
+            raise HTTPException(status_code=403, detail="Forbidden: Not a mutant")
 
 @app.get("/stats")
 def stats():
