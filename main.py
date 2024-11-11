@@ -60,6 +60,10 @@ def is_mutant(dna):
 
     return False
 
+@app.get("/")
+def welcome():
+    return {"message": "Welcome to the DNA Mutant Detection API!"}
+
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
